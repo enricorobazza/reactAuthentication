@@ -10,11 +10,15 @@ export default class Auth{
     }
 
     static logIn(login, password){
-        axios.post('http://localhost:3001/auth/authenticate', {login, password}).then((response)=>{
-            localStorage.setItem('token', response.data.token);
-        }).catch((err)=>{
-            localStorage.removeItem('token');
-        });
+        return new Promise((resolve, reject) => {
+            axios.post('http://localhost:3001/auth/authenticate', {login, password}).then((response)=>{
+                localStorage.setItem('token', response.data.token);
+                resolve(true);
+            }).catch((err)=>{
+                localStorage.removeItem('token');
+                resolve(false);
+            });
+        })
     }
 
     static logOut(){
