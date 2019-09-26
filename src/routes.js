@@ -2,6 +2,7 @@ import React from 'react';
 import Auth from './auth';
 import Index from './pages/Index';
 import Logged from './pages/Logged';
+import Cadastro from './pages/Cadastro';
 
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -17,6 +18,7 @@ const Routes = () => (
     <BrowserRouter> 
         <Switch>
             <Route exact path="/" component={Index}/>
+            <PrivateRoute path="/app/cadastro" component={Cadastro}/>
             <PrivateRoute path="/app" component={Logged}/>
         </Switch>
     </BrowserRouter>
